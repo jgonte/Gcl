@@ -1,21 +1,21 @@
-import { format } from './utils';
+import { template } from './utils';
 
-describe('format', () => {
-  it('returns empty string for no names defined', () => {
-    expect(format(undefined, undefined, undefined)).toEqual('');
+describe('template', () => {
+  it('returns the original string when there is no data passed', () => {
+    expect(template('some text', undefined)).toEqual('some text');
   });
 
-  it('formats just first names', () => {
-    expect(format('Joseph', undefined, undefined)).toEqual('Joseph');
-  });
+  // it('templates just first names', () => {
+  //   expect(template('Joseph', undefined)).toEqual('Joseph');
+  // });
 
-  it('formats first and last names', () => {
-    expect(format('Joseph', undefined, 'Publique')).toEqual('Joseph Publique');
-  });
+  // it('templates first and last names', () => {
+  //   expect(template('Joseph', undefined, 'Publique')).toEqual('Joseph Publique');
+  // });
 
-  it('formats first, middle and last names', () => {
-    expect(format('Joseph', 'Quincy', 'Publique')).toEqual(
-      'Joseph Quincy Publique'
-    );
-  });
+  // it('templates first, middle and last names', () => {
+  //   expect(template('Joseph', 'Quincy', 'Publique')).toEqual(
+  //     'Joseph Quincy Publique'
+  //   );
+  // });
 });
