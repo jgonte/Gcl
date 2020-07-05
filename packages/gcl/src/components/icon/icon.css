@@ -1,0 +1,79 @@
+:host {
+    display: inline-block;
+    font-style: normal;
+    line-height: 0;
+    text-align: center;
+    text-transform: none;
+    vertical-align: -.125em;
+    text-rendering: optimizeLegibility;
+}
+
+svg {
+    display: block;
+    width: 1em;
+    height: 1em;
+    color: inherit;
+}
+
+
+/* Icon Sizes
+ * -----------------------------------------------------------
+ */
+
+:host(.small) {
+    font-size: 18px !important;
+}
+
+:host(.large) {
+    font-size: 32px !important;
+}
+
+
+/* Icon Colors
+ * -----------------------------------------------------------
+ */
+
+:host(.primary) {
+    color: var(--color-primary, #3880ff);
+}
+
+:host(.secondary) {
+    color: var(--color-secondary, #0cd1e8);
+}
+
+:host(.tertiary) {
+    color: var(--color-tertiary, #f4a942);
+}
+
+:host(.success) {
+    color: var(--color-success, #10dc60);
+}
+
+:host(.warning) {
+    color: var(--color-warning, #ffce00);
+}
+
+:host(.danger) {
+    color: var(--color-danger, #f14141);
+}
+
+:host(.light) {
+    color: var(--color-light, #f4f5f8);
+}
+
+:host(.medium) {
+    color: var(--color-medium, #989aa2);
+}
+
+:host(.dark) {
+    color: var(--color-dark, #222428);
+}
+
+
+/* Icon RTL
+ * -----------------------------------------------------------
+ */
+
+ :host(.rtl) {
+    transform: scaleX(-1);
+}
