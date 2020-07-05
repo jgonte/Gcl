@@ -17,9 +17,8 @@ export class Icon {
 
   /**
    * The size of the icon.
-   * Available options are: `"small"` and `"large"`.
    */
-  @Prop() size?: string = "small";
+  @Prop() size?: "small" | "large" = "small";
 
   /**
    * The color of the icon.

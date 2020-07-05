@@ -36,7 +36,7 @@ export class Alert {
   render() {
 
     return (
-      <div class={this.createClass()}>
+      <div class={this.createClassName()}>
         {this.getIcon()}
         {this.renderMessage()}
         {this.renderDescription()}
@@ -72,7 +72,7 @@ export class Alert {
     }
   }
 
-  createClass(): string {
+  createClassName(): string {
     return `alert ${this.type}`;
   }
 

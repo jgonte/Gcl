@@ -27,12 +27,50 @@
     <gcl-icon name="arrow-right" class="large success rtl"></gcl-icon>
     <gcl-icon name="chevron-right" class="large medium rtl"></gcl-icon>
 
-    <h4>Alerts</h4>
+    <h4>Buttons</h4>
+    <gcl-button icon="pencil" label="Default Button"></gcl-button>
+    <gcl-button icon="globe" label="Primary Button" variant="primary"></gcl-button>
+
+    <h4>Overlays</h4>
+    <gcl-button icon="back" id="showOverlayButton" label="Show Overlay" variant="primary"></gcl-button>
+    <gcl-overlay id="overlay">
+        <gcl-button icon="eject" id="hideOverlayButton" label="Hide Overlay" variant="primary"></gcl-button>
+    </gcl-overlay>
+
+    <h4>Cards</h4>
+    <gcl-card>
+        This is my card
+    </gcl-card>
+
+    <!-- <h4>Alerts</h4>
     <gcl-alert message="Some info alert" description="Info alert description" showIcon closable></gcl-alert>
     <gcl-alert type="info" message="Another info alert"></gcl-alert>
     <gcl-alert type="success" message="Some success alert"></gcl-alert>
     <gcl-alert type="warning" message="Some warning alert"></gcl-alert>
-    <gcl-alert type="error" message="Some error alert"></gcl-alert>
+    <gcl-alert type="error" message="Some error alert"></gcl-alert> -->
+
+    <script>
+        const overlay = document.getElementById("overlay");
+
+        function showOverlay() {
+
+            overlay.show();
+        }
+
+        function hideOverlay() {
+
+            overlay.hide();
+        }
+
+        const showOverlayButton = document.getElementById("showOverlayButton");
+
+        showOverlayButton.onclick = showOverlay;
+
+        const hideOverlayButton = document.getElementById("hideOverlayButton");
+
+        hideOverlayButton.onclick = hideOverlay;
+
+    </script>
 
 </body>
 

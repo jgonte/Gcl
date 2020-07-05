@@ -29,6 +29,30 @@ export namespace Components {
          */
         "type": "info" | "success" | "warning" | "error";
     }
+    interface GclButton {
+        /**
+          * The name of the icon to render on the button
+         */
+        "icon"?: string;
+        /**
+          * The label of the button
+         */
+        "label"?: string;
+        /**
+          * Specifies whether the icon should horizontally flip with the label when `dir` is `"rtl"`.
+         */
+        "rtl"?: boolean;
+        /**
+          * The type of the button
+         */
+        "type": "button" | "reset" | "submit";
+        /**
+          * The variant of the button
+         */
+        "variant": "default" | "primary" | "dashed" | "link" | "danger";
+    }
+    interface GclCard {
+    }
     interface GclIcon {
         /**
           * The color of the icon.
@@ -43,9 +67,15 @@ export namespace Components {
          */
         "rtl"?: boolean;
         /**
-          * The size of the icon. Available options are: `"small"` and `"large"`.
+          * The size of the icon.
          */
-        "size"?: string;
+        "size"?: "small" | "large";
+    }
+    interface GclModal {
+    }
+    interface GclOverlay {
+        "hide": () => Promise<void>;
+        "show": () => Promise<void>;
     }
 }
 declare global {
@@ -55,15 +85,43 @@ declare global {
         prototype: HTMLGclAlertElement;
         new (): HTMLGclAlertElement;
     };
+    interface HTMLGclButtonElement extends Components.GclButton, HTMLStencilElement {
+    }
+    var HTMLGclButtonElement: {
+        prototype: HTMLGclButtonElement;
+        new (): HTMLGclButtonElement;
+    };
+    interface HTMLGclCardElement extends Components.GclCard, HTMLStencilElement {
+    }
+    var HTMLGclCardElement: {
+        prototype: HTMLGclCardElement;
+        new (): HTMLGclCardElement;
+    };
     interface HTMLGclIconElement extends Components.GclIcon, HTMLStencilElement {
     }
     var HTMLGclIconElement: {
         prototype: HTMLGclIconElement;
         new (): HTMLGclIconElement;
     };
+    interface HTMLGclModalElement extends Components.GclModal, HTMLStencilElement {
+    }
+    var HTMLGclModalElement: {
+        prototype: HTMLGclModalElement;
+        new (): HTMLGclModalElement;
+    };
+    interface HTMLGclOverlayElement extends Components.GclOverlay, HTMLStencilElement {
+    }
+    var HTMLGclOverlayElement: {
+        prototype: HTMLGclOverlayElement;
+        new (): HTMLGclOverlayElement;
+    };
     interface HTMLElementTagNameMap {
         "gcl-alert": HTMLGclAlertElement;
+        "gcl-button": HTMLGclButtonElement;
+        "gcl-card": HTMLGclCardElement;
         "gcl-icon": HTMLGclIconElement;
+        "gcl-modal": HTMLGclModalElement;
+        "gcl-overlay": HTMLGclOverlayElement;
     }
 }
 declare namespace LocalJSX {
@@ -89,6 +147,30 @@ declare namespace LocalJSX {
          */
         "type"?: "info" | "success" | "warning" | "error";
     }
+    interface GclButton {
+        /**
+          * The name of the icon to render on the button
+         */
+        "icon"?: string;
+        /**
+          * The label of the button
+         */
+        "label"?: string;
+        /**
+          * Specifies whether the icon should horizontally flip with the label when `dir` is `"rtl"`.
+         */
+        "rtl"?: boolean;
+        /**
+          * The type of the button
+         */
+        "type"?: "button" | "reset" | "submit";
+        /**
+          * The variant of the button
+         */
+        "variant"?: "default" | "primary" | "dashed" | "link" | "danger";
+    }
+    interface GclCard {
+    }
     interface GclIcon {
         /**
           * The color of the icon.
@@ -103,13 +185,21 @@ declare namespace LocalJSX {
          */
         "rtl"?: boolean;
         /**
-          * The size of the icon. Available options are: `"small"` and `"large"`.
+          * The size of the icon.
          */
-        "size"?: string;
+        "size"?: "small" | "large";
+    }
+    interface GclModal {
+    }
+    interface GclOverlay {
     }
     interface IntrinsicElements {
         "gcl-alert": GclAlert;
+        "gcl-button": GclButton;
+        "gcl-card": GclCard;
         "gcl-icon": GclIcon;
+        "gcl-modal": GclModal;
+        "gcl-overlay": GclOverlay;
     }
 }
 export { LocalJSX as JSX };
@@ -117,7 +207,11 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "gcl-alert": LocalJSX.GclAlert & JSXBase.HTMLAttributes<HTMLGclAlertElement>;
+            "gcl-button": LocalJSX.GclButton & JSXBase.HTMLAttributes<HTMLGclButtonElement>;
+            "gcl-card": LocalJSX.GclCard & JSXBase.HTMLAttributes<HTMLGclCardElement>;
             "gcl-icon": LocalJSX.GclIcon & JSXBase.HTMLAttributes<HTMLGclIconElement>;
+            "gcl-modal": LocalJSX.GclModal & JSXBase.HTMLAttributes<HTMLGclModalElement>;
+            "gcl-overlay": LocalJSX.GclOverlay & JSXBase.HTMLAttributes<HTMLGclOverlayElement>;
         }
     }
 }
