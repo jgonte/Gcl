@@ -1,4 +1,4 @@
-import { Component, State, h, Method } from '@stencil/core';
+import { Component, Prop, h } from '@stencil/core';
 
 @Component({
   tag: 'gcl-overlay',
@@ -7,7 +7,7 @@ import { Component, State, h, Method } from '@stencil/core';
 })
 export class Overlay {
 
-  @State() visible: boolean = false;
+  @Prop() visible: boolean = false;
 
   render() {
     return (
@@ -20,15 +20,4 @@ export class Overlay {
       </div>
     );
   }
-
-  @Method()
-  show() {
-    this.visible = true;
-  }
-
-  @Method()
-  hide() {
-    this.visible = false;
-  }
-
 }

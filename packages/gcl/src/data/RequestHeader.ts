@@ -1,7 +1,7 @@
 /**
  * The header information
  */
-interface Header {
+export default class RequestHeader {
     key: string
     value: string
 }

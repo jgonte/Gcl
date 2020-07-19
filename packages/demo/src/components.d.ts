@@ -5,8 +5,16 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { Icon, } from "./components/icon/icon";
+import { MatchResults, } from "@stencil/router";
+import { Icon, } from "./components/gcl/components/icon/icon";
 export namespace Components {
+    interface AppHome {
+    }
+    interface AppProfile {
+        "match": MatchResults;
+    }
+    interface AppRoot {
+    }
     interface GclAlert {
         /**
           * The description of the message
@@ -28,8 +36,6 @@ export namespace Components {
           * The type of the alert
          */
         "type": "info" | "success" | "warning" | "error";
-    }
-    interface GclAppCtrl {
     }
     interface GclButton {
         /**
@@ -84,23 +90,39 @@ export namespace Components {
          */
         "intlKey": string;
         /**
+          * The provider to retrieve the value for the key
+         */
+        "intlProvider": IntlProvider;
+        /**
           * The value of the text to render
          */
         "value": string;
     }
 }
 declare global {
+    interface HTMLAppHomeElement extends Components.AppHome, HTMLStencilElement {
+    }
+    var HTMLAppHomeElement: {
+        prototype: HTMLAppHomeElement;
+        new (): HTMLAppHomeElement;
+    };
+    interface HTMLAppProfileElement extends Components.AppProfile, HTMLStencilElement {
+    }
+    var HTMLAppProfileElement: {
+        prototype: HTMLAppProfileElement;
+        new (): HTMLAppProfileElement;
+    };
+    interface HTMLAppRootElement extends Components.AppRoot, HTMLStencilElement {
+    }
+    var HTMLAppRootElement: {
+        prototype: HTMLAppRootElement;
+        new (): HTMLAppRootElement;
+    };
     interface HTMLGclAlertElement extends Components.GclAlert, HTMLStencilElement {
     }
     var HTMLGclAlertElement: {
         prototype: HTMLGclAlertElement;
         new (): HTMLGclAlertElement;
-    };
-    interface HTMLGclAppCtrlElement extends Components.GclAppCtrl, HTMLStencilElement {
-    }
-    var HTMLGclAppCtrlElement: {
-        prototype: HTMLGclAppCtrlElement;
-        new (): HTMLGclAppCtrlElement;
     };
     interface HTMLGclButtonElement extends Components.GclButton, HTMLStencilElement {
     }
@@ -139,8 +161,10 @@ declare global {
         new (): HTMLGclTextElement;
     };
     interface HTMLElementTagNameMap {
+        "app-home": HTMLAppHomeElement;
+        "app-profile": HTMLAppProfileElement;
+        "app-root": HTMLAppRootElement;
         "gcl-alert": HTMLGclAlertElement;
-        "gcl-app-ctrl": HTMLGclAppCtrlElement;
         "gcl-button": HTMLGclButtonElement;
         "gcl-card": HTMLGclCardElement;
         "gcl-icon": HTMLGclIconElement;
@@ -150,6 +174,13 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface AppHome {
+    }
+    interface AppProfile {
+        "match"?: MatchResults;
+    }
+    interface AppRoot {
+    }
     interface GclAlert {
         /**
           * The description of the message
@@ -171,8 +202,6 @@ declare namespace LocalJSX {
           * The type of the alert
          */
         "type"?: "info" | "success" | "warning" | "error";
-    }
-    interface GclAppCtrl {
     }
     interface GclButton {
         /**
@@ -227,13 +256,19 @@ declare namespace LocalJSX {
          */
         "intlKey"?: string;
         /**
+          * The provider to retrieve the value for the key
+         */
+        "intlProvider"?: IntlProvider;
+        /**
           * The value of the text to render
          */
         "value"?: string;
     }
     interface IntrinsicElements {
+        "app-home": AppHome;
+        "app-profile": AppProfile;
+        "app-root": AppRoot;
         "gcl-alert": GclAlert;
-        "gcl-app-ctrl": GclAppCtrl;
         "gcl-button": GclButton;
         "gcl-card": GclCard;
         "gcl-icon": GclIcon;
@@ -246,8 +281,10 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
+            "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
+            "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
             "gcl-alert": LocalJSX.GclAlert & JSXBase.HTMLAttributes<HTMLGclAlertElement>;
-            "gcl-app-ctrl": LocalJSX.GclAppCtrl & JSXBase.HTMLAttributes<HTMLGclAppCtrlElement>;
             "gcl-button": LocalJSX.GclButton & JSXBase.HTMLAttributes<HTMLGclButtonElement>;
             "gcl-card": LocalJSX.GclCard & JSXBase.HTMLAttributes<HTMLGclCardElement>;
             "gcl-icon": LocalJSX.GclIcon & JSXBase.HTMLAttributes<HTMLGclIconElement>;

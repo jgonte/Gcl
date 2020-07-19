@@ -1,4 +1,8 @@
+import Loader from './Loader';
+import CollectionLoaderConfig from './CollectionLoaderConfig';
 import { buildParams } from '../utils';
+import Filter from '../filters/Filter';
+import Sorter from '../Sorter';
 
 /**
  * Loader of a collection of items using OData specifications
@@ -60,5 +64,19 @@ export default class CollectionLoader extends Loader {
         return qs.length ?
             `${url}?${qs.join('&')}` :
             url;
+    }
+
+    buildFilter(filter: Filter): string {
+
+        return filter?
+            filter.build() :
+            null;
+    }
+
+    buildOrderBy(sorters: Sorter[]): string {
+
+        return (sorters && sorters.length) ?
+            `$orderby=${sorters.map(item => `${item.field} ${item.order}`).join(', ')}` :
+            null;
     }
 }

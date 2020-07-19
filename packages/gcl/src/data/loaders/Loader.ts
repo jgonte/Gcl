@@ -1,14 +1,16 @@
+import LoaderConfig from "./LoaderConfig";
+
 /**
  * Base loader class
  */
-abstract class Loader {
+export default abstract class Loader {
 
     async load(cfg: LoaderConfig) {
 
         try {
 
             const response = await fetch(this.buildUrl(cfg), {
-                headers: this.buildHeaders(cfg)
+                headers: await this.buildHeaders(cfg)
             });
 
             if (!response.ok) {
@@ -37,15 +39,35 @@ abstract class Loader {
      * Builds the headers to be sent from the key-value pair headers of the configuration
      * @param cfg 
      */
-    buildHeaders(cfg: LoaderConfig): HeadersInit {
+    async buildHeaders(cfg: LoaderConfig): Promise<HeadersInit> {
 
         const headers = new Headers();
 
+        // Append the headers from the configuration
         if (cfg.headers) {
 
             cfg.headers.forEach((header) => headers.append(header.key, header.value));
         }
 
+        // Add the authorization header
+        if (cfg.authProvider) {
+
+            const authHeader = await cfg.authProvider.authorize();
+
+            headers.append(authHeader.key, authHeader.value);
+        }
+
         return headers;
+    }
+
+    /**
+     * Builds the OData fragment of $select with the list of fields to be selected
+     * @param fields The array of field names
+     */
+    buildSelect(fields: string[]): string {
+        
+        return fields && fields.length ?
+            fields.join(',') :
+            null;
     }
 }

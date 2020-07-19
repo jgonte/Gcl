@@ -27,6 +27,12 @@
     <gcl-icon name="arrow-right" class="large success rtl"></gcl-icon>
     <gcl-icon name="chevron-right" class="large medium rtl"></gcl-icon>
 
+    <h4>Texts</h4>
+    <gcl-text>Some text</gcl-text>
+    <gcl-text value="Some other text"></gcl-text>
+    <gcl-text id="localizedText" intlKey="someLocalizedText"></gcl-text>
+    <gcl-button id="changeLanguageButton" icon="pencil" label="Change Language"></gcl-button>
+
     <h4>Buttons</h4>
     <gcl-button icon="pencil" label="Default Button"></gcl-button>
     <gcl-button icon="globe" label="Primary Button" variant="primary"></gcl-button>
@@ -40,6 +46,8 @@
     <h4>Cards</h4>
     <gcl-card>
         This is my card
+
+        simple one
     </gcl-card>
 
     <!-- <h4>Alerts</h4>
@@ -49,17 +57,91 @@
     <gcl-alert type="warning" message="Some warning alert"></gcl-alert>
     <gcl-alert type="error" message="Some error alert"></gcl-alert> -->
 
+    <gcl-app_ctrl 
+        id="app-ctrl"
+        name="My App",
+        showUser
+        showLangSelector>
+        kuku
+    </gcl-app_ctrl>
+
     <script>
+
+        const localizedText = document.getElementById("localizedText");
+
+        const memoryIntProvider = {
+            data: {
+                'en': {
+                    'someLocalizedText': 'Some localized text'
+                },
+                'de': {
+                    'someLocalizedText': 'etwas lokalisierter Text'
+                },
+                'fr': {
+                    'someLocalizedText': 'du texte localisé'
+                }
+            },
+            getData(lang, key) {
+
+                return this.data[lang][key];
+            }
+        };
+
+        localizedText.intlProvider = memoryIntProvider;
+
+        const changeLanguageButton = document.getElementById("changeLanguageButton");
+
+        changeLanguageButton.lng = 'en';
+
+        const languageChangeEvent = new CustomEvent('languagechange', {
+            //bubbles: true,
+            lang: () => changeLanguageButton.lng
+        });
+
+        function onLanguageChange(evt) {
+
+            evt.target.value = localizedText.intlProvider.getData(evt.lang(), evt.target.intlKey)
+        }
+
+        localizedText.addEventListener('languagechange', onLanguageChange, { capture: true });
+
+        function changeLanguage() {
+
+            debugger;
+            switch (changeLanguageButton.lng) {
+                case 'en':
+                    {
+                        changeLanguageButton.lng = 'de';
+                        changeLanguageButton.dispatchEvent(languageChangeEvent);
+                    }
+                    break;
+                case 'de':
+                    {
+                        changeLanguageButton.lng = 'fr';
+                        changeLanguageButton.dispatchEvent(languageChangeEvent);
+                    }
+                    break;
+                default:
+                    {
+                        changeLanguageButton.lng = 'en';
+                        changeLanguageButton.dispatchEvent(languageChangeEvent);
+                    }
+                    break;
+            }
+        }
+
+        changeLanguageButton.onclick = changeLanguage;
+
         const overlay = document.getElementById("overlay");
 
         function showOverlay() {
 
-            overlay.show();
+            overlay.visible = true;
         }
 
         function hideOverlay() {
 
-            overlay.hide();
+            overlay.visible = false;
         }
 
         const showOverlayButton = document.getElementById("showOverlayButton");
